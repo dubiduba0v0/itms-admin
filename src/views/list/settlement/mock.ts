@@ -27,7 +27,6 @@ const data = Mock.mock({
       'end|8': /[0-9]/,
       'courier': /张三/,
       'name': /沈阳分站/,
-
       'createdTime': Random.datetime(),
     },
   ],

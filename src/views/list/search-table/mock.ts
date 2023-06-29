@@ -15,7 +15,6 @@ const data = Mock.mock({
       'courier': /张三/,
       'name': /沈阳分站/,
       'money|1-3': /[0-9]/,
-      'contentType|1': ['img', 'horizontalVideo', 'verticalVideo'],
       'count|2-3': /[0-9]/,
       'status|1': ['online', 'offline'],
       'filterType|1': ['artificial', 'rules'],

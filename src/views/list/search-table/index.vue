@@ -415,7 +415,7 @@
   ): T => {
     const newArray = isDeep ? cloneDeep(array) : array;
     if (beforeIdx > -1 && newIdx > -1) {
-      // 先替换后面的，然后拿到替换的结果替换前面的
+      // 先替换后面的，然后拿到替换的结果替换前面
       newArray.splice(
         beforeIdx,
         1,

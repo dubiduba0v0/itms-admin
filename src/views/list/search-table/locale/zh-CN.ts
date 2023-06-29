@@ -38,7 +38,6 @@ export default {
   'searchTable.columns.operations': '操作',
   'searchTable.columns.operations.view': '查看',
   'searchTable.columns.operations.waste': '作废',
-
   // size
   'searchTable.size.mini': '迷你',
   'searchTable.size.small': '偏小',

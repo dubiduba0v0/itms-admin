@@ -5,7 +5,6 @@ export default {
   'settlement.form.category.placeholder': '请输入商品类别',
   'settlement.form.name': '商品名称',
   'settlement.form.name.placeholder': '请输入商品名称',
-
   // columnsF
   'settlement.columns.category': '商品类别',
   'settlement.columns.price': '商品单价',
