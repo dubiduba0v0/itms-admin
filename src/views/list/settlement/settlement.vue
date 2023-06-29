@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['menu.list', 'menu.list.searchTable']" />
-    <a-card class="general-card" :title="$t('menu.list.searchTable')">
+    <Breadcrumb :items="['menu.list', 'menu.list.settlement']" />
+    <a-card class="general-card" :title="$t('menu.list.settlement')">
       <a-row>
         <a-col :flex="1">
           <a-form
@@ -14,19 +14,19 @@
               <a-col :span="8">
                 <a-form-item
                   field="number"
-                  :label="$t('searchTable.form.number')"
+                  :label="$t('settlement.form.category')"
                 >
                   <a-input
                     v-model="formModel.number"
-                    :placeholder="$t('searchTable.form.number.placeholder')"
+                    :placeholder="$t('settlement.form.category.placeholder')"
                   />
                 </a-form-item>
               </a-col>
               <a-col :span="8">
-                <a-form-item field="name" :label="$t('searchTable.form.name')">
+                <a-form-item field="name" :label="$t('settlement.form.name')">
                   <a-input
                     v-model="formModel.name"
-                    :placeholder="$t('searchTable.form.name.placeholder')"
+                    :placeholder="$t('settlement.form.name.placeholder')"
                   />
                 </a-form-item>
               </a-col>
@@ -279,31 +279,31 @@
       slotName: 'index',
     },
     {
-      title: t('searchTable.columns.number'),
-      dataIndex: 'number',
+      title: t('settlement.columns.category'),
+      dataIndex: 'category',
     },
     {
-      title: t('searchTable.columns.start'),
-      dataIndex: 'start',
+      title: t('settlement.columns.name'),
+      dataIndex: 'productName',
     },
     {
-      title: t('searchTable.columns.end'),
-      dataIndex: 'end',
+      title: t('settlement.columns.price'),
+      dataIndex: 'price',
     },
     {
-      title: t('searchTable.columns.name'),
-      dataIndex: 'name',
+      title: t('settlement.columns.saleCount'),
+      dataIndex: 'saleCount',
     },
     {
-      title: t('searchTable.columns.courier'),
-      dataIndex: 'courier',
+      title: t('settlement.columns.returnCount'),
+      dataIndex: 'returnCount',
     },
     {
-      title: t('searchTable.columns.money'),
+      title: t('settlement.columns.payment'),
       dataIndex: 'money',
     },
     {
-      title: t('searchTable.columns.count'),
+      title: t('settlement.columns.returnPayment'),
       dataIndex: 'count',
     },
     {

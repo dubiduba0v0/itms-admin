@@ -9,7 +9,7 @@ const LIST: AppRouteRecordRaw = {
     locale: 'menu.list',
     requiresAuth: true,
     icon: 'icon-list',
-    order: 2,
+    order: 3,
   },
   children: [
     {
@@ -18,6 +18,16 @@ const LIST: AppRouteRecordRaw = {
       component: () => import('@/views/list/search-table/index.vue'),
       meta: {
         locale: 'menu.list.searchTable',
+        requiresAuth: true,
+        roles: ['*'],
+      },
+    },
+    {
+      path: 'settlement', // The midline path complies with SEO specifications
+      name: 'settlement',
+      component: () => import('@/views/list/settlement/settlement.vue'),
+      meta: {
+        locale: 'menu.list.settlement',
         requiresAuth: true,
         roles: ['*'],
       },

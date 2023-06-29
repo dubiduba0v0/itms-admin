@@ -9,6 +9,7 @@ import '@/views/dashboard/monitor/mock';
 
 import '@/views/list/card/mock';
 import '@/views/list/search-table/mock';
+import '@/views/list/settlement/mock';
 
 import '@/views/form/step/mock';
 
