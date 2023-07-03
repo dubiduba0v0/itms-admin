@@ -33,7 +33,7 @@ export default {
   'searchTable.columns.count': '本数',
   'searchTable.columns.round': '批次',
   'searchTable.columns.money': '金额',
-  'searchTable.columns.createdTime': '创建时间',
+  'searchTable.columns.createdTime': '日期',
   'searchTable.columns.status': '状态',
   'searchTable.columns.operations': '操作',
   'searchTable.columns.operations.view': '查看',

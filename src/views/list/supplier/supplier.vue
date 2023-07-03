@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Breadcrumb :items="['menu.list', 'menu.list.searchTable']" />
-    <a-card class="general-card" :title="$t('menu.list.searchTable')">
+    <Breadcrumb :items="['menu.list', 'menu.list.supplier']" />
+    <a-card class="general-card" :title="$t('menu.list.supplier')">
       <a-row>
         <a-col :flex="1">
           <a-form
@@ -14,24 +14,31 @@
               <a-col :span="8">
                 <a-form-item
                   field="number"
-                  :label="$t('searchTable.form.number')"
+                  :label="$t('supplier.form.supplier')"
                 >
                   <a-input
                     v-model="formModel.number"
-                    :placeholder="$t('searchTable.form.number.placeholder')"
+                    :placeholder="$t('supplier.form.supplier.placeholder')"
                   />
                 </a-form-item>
               </a-col>
               <a-col :span="8">
-                <a-form-item field="name" :label="$t('searchTable.form.name')">
+                <a-form-item field="name" :label="$t('supplier.form.name')">
                   <a-input
                     v-model="formModel.name"
-                    :placeholder="$t('searchTable.form.name.placeholder')"
+                    :placeholder="$t('supplier.form.name.placeholder')"
                   />
                 </a-form-item>
               </a-col>
-
               <a-col :span="8">
+
+                <a-range-picker
+                    @change="onChange"
+                    @select="onSelect"
+                    style="width: 254px; marginBottom: 20px;"
+                />
+              </a-col>
+              <!--              <a-col :span="8">
                 <a-form-item
                   field="status"
                   :label="$t('searchTable.form.status')"
@@ -42,7 +49,7 @@
                     :placeholder="$t('searchTable.form.selectDefault')"
                   />
                 </a-form-item>
-              </a-col>
+              </a-col>-->
             </a-row>
           </a-form>
         </a-col>
@@ -67,7 +74,7 @@
       <a-divider style="margin-top: 0" />
       <a-row style="margin-bottom: 16px">
         <a-col :span="12">
-          <a-space>
+          <!--          <a-space>
             <a-button type="primary">
               <template #icon>
                 <icon-plus />
@@ -81,6 +88,12 @@
                 </a-button>
               </template>
             </a-upload>
+          </a-space>-->
+          <a-space size="large">
+            <a-statistic :title="$t('supplier.columns.paymentSum')"
+                         :value="6232" show-group-separator />
+            <a-statistic :title="$t('supplier.columns.returnPaymentSum')"
+                         :value="299" show-group-separator />
           </a-space>
         </a-col>
         <a-col
@@ -196,16 +209,19 @@
         <template #filterType="{ record }">
           {{ $t(`searchTable.form.filterType.${record.filterType}`) }}
         </template>
-        <template #status="{ record }">
+        <!--        <template #status="{ record }">
           <span v-if="record.status === 'offline'" class="circle"></span>
           <span v-else class="circle pass"></span>
           {{ $t(`searchTable.form.status.${record.status}`) }}
-        </template>
-        <template #operations>
+        </template>-->
+        <!--        <template #operations>
+          <a-button v-permission="['admin']" type="text" size="small">
+            {{ $t('searchTable.columns.operations.view') }}
+          </a-button>
           <a-button v-permission="['admin']" type="text" size="small">
             {{ $t('searchTable.columns.operations.waste') }}
           </a-button>
-        </template>
+        </template>-->
       </a-table>
     </a-card>
   </div>
@@ -217,7 +233,7 @@
   import useLoading from '@/hooks/loading';
   import { queryPolicyList, PolicyRecord, PolicyParams } from '@/api/list';
   import { Pagination } from '@/types/global';
-  import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface';
+  // import type { SelectOptionData } from '@arco-design/web-vue/es/select/interface';
   import type { TableColumnData } from '@arco-design/web-vue/es/table/interface';
   import cloneDeep from 'lodash/cloneDeep';
   import Sortable from 'sortablejs';
@@ -276,49 +292,49 @@
       slotName: 'index',
     },
     {
-      title: t('searchTable.columns.number'),
-      dataIndex: 'number',
+      title: t('supplier.columns.supplierName'),
+      dataIndex: 'supplierName',
     },
     {
-      title: t('searchTable.columns.start'),
-      dataIndex: 'start',
+      title: t('supplier.columns.name'),
+      dataIndex: 'productName',
     },
     {
-      title: t('searchTable.columns.end'),
-      dataIndex: 'end',
+      title: t('supplier.columns.price'),
+      dataIndex: 'price',
     },
     {
-      title: t('searchTable.columns.name'),
-      dataIndex: 'name',
+      title: t('supplier.columns.saleCount'),
+      dataIndex: 'saleCount',
     },
     {
-      title: t('searchTable.columns.courier'),
-      dataIndex: 'courier',
+      title: t('supplier.columns.returnCount'),
+      dataIndex: 'returnCount',
     },
     {
-      title: t('searchTable.columns.money'),
+      title: t('supplier.columns.payment'),
       dataIndex: 'money',
     },
     {
-      title: t('searchTable.columns.count'),
+      title: t('supplier.columns.returnPayment'),
       dataIndex: 'count',
     },
     {
-      title: t('searchTable.columns.createdTime'),
-      dataIndex: 'createdTime',
+      title: t('supplier.columns.date'),
+      dataIndex: 'date',
     },
-    {
+    /*    {
       title: t('searchTable.columns.status'),
       dataIndex: 'status',
       slotName: 'status',
-    },
-    {
+    }, */
+    /*     {
       title: t('searchTable.columns.operations'),
       dataIndex: 'operations',
       slotName: 'operations',
-    },
+    }, */
   ]);
-  const contentTypeOptions = computed<SelectOptionData[]>(() => [
+  /*  const contentTypeOptions = computed<SelectOptionData[]>(() => [
     {
       label: t('searchTable.form.contentType.img'),
       value: 'img',
@@ -341,8 +357,8 @@
       label: t('searchTable.form.filterType.rules'),
       value: 'rules',
     },
-  ]);
-  const statusOptions = computed<SelectOptionData[]>(() => [
+  ]); */
+  /*  const statusOptions = computed<SelectOptionData[]>(() => [
     {
       label: t('searchTable.form.status.online'),
       value: 'online',
@@ -351,7 +367,7 @@
       label: t('searchTable.form.status.offline'),
       value: 'offline',
     },
-  ]);
+  ]); */
   const fetchData = async (
     params: PolicyParams = { current: 1, pageSize: 20 }
   ) => {
@@ -412,7 +428,7 @@
   ): T => {
     const newArray = isDeep ? cloneDeep(array) : array;
     if (beforeIdx > -1 && newIdx > -1) {
-      // 先替换后面的，然后拿到替换的结果替换前面
+      // 先替换后面的，然后拿到替换的结果替换前面的
       newArray.splice(
         beforeIdx,
         1,
